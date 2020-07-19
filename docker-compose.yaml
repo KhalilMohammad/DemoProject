@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  db:
+    container_name: db
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/data/db
+    restart: always
+  frontend:
+    container_name: awesome_web
+    build:
+      context: ./Client
+      dockerfile: Dockerfile
+    image: wildcursor/awesome_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./Client
+    depends_on:
+      - backend
+  backend:
+    container_name: awesome_server
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    image: wildcursor/awesome_server
+    environment:
+      db_url: mongodb://db:27017/testdb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Server
+    depends_on:
+      - db
