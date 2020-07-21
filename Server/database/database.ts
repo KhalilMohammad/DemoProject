@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-let database: mongoose.Connection;
+export let database: mongoose.Connection;
 let count = 0;
 
-export const connect = (): void => {
+export const connect = () => {
   // add your own uri below
   const uri = globalThis.process.env.db_url
     ? globalThis.process.env.db_url
@@ -12,7 +12,7 @@ export const connect = (): void => {
     return;
   }
 
-  mongoose
+  return mongoose
     .connect(uri, {
       useNewUrlParser: true,
       useFindAndModify: true,

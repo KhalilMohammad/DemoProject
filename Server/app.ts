@@ -18,6 +18,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/link", indexRouter);
 
-connect();
+(async () => await connect())();
 
 export default app;
