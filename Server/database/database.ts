@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export let database: mongoose.Connection;
 let count = 0;
 
-export const connect = () => {
+export const connect = (): Promise<void> | undefined => {
   // add your own uri below
   const uri = globalThis.process.env.db_url
     ? globalThis.process.env.db_url
@@ -28,11 +28,10 @@ export const connect = () => {
       database.on("error", () => {
         console.log("Error connecting to database");
       });
-      return;
     })
     .catch(() => {
       console.log(`Retrying to connect to database ${++count} time`);
-      connect();
+      return connect();
     });
 };
 

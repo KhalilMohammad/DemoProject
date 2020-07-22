@@ -1,7 +1,7 @@
 import { URL } from "url";
 import { UrlModel } from "./url.model";
 
-export const makeid = (length: number) => {
+export const makeid = (length: number): string => {
   let result = "";
   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
@@ -10,7 +10,7 @@ export const makeid = (length: number) => {
   return result;
 };
 
-export const createShortLink = async (orignalUrl: string) => {
+export const createShortLink = async (orignalUrl: string): Promise<string> => {
   const url = new URL(orignalUrl).hostname
     .replace("www", "")
     .split(".")
