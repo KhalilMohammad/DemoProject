@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "mongoose": "^5.9.24",
+    "mongoose": "^6.13.10",
     "morgan": "~1.9.1",
     "url-exist": "^2.0.2"
   },
